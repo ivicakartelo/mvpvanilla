@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    MVP First - Vanilla JS
+  </title>
+
+</head>
+
+<body>
+
+  <div
+    style="
+      max-width:700px;
+      margin:auto;
+      padding:20px;
+    "
+  >
+
+    <img
+      src="/images/modern-react-development.jpg"
+      alt=""
+      width="100%"
+    >
+
+    <h1>
+      Modern React Development
+    </h1>
+
+    <p>
+      Learn MVP thinking, scalability and architecture.
+    </p>
+
+    <h2>
+      29 EUR
+    </h2>
+
+    <button
+      onclick="buyBook()"
+    >
+      BUY
+    </button>
+
+    <div
+      id="invoice"
+      style="
+        display:none;
+        margin-top:20px;
+        padding:20px;
+        border:1px solid #ccc;
+      "
+    >
+
+      <h2>
+        INVOICE
+      </h2>
+
+      <p>
+        Invoice:
+        <span
+          id="invoiceNumber"
+        ></span>
+      </p>
+
+      <p>
+        Seller:
+        <span
+          id="seller"
+        ></span>
+      </p>
+
+      <p>
+        Product:
+        <span
+          id="product"
+        ></span>
+      </p>
+
+      <p>
+        Total:
+        <span
+          id="total"
+        ></span>
+        EUR
+      </p>
+
+      <p>
+        PayPal:
+        paypal@example.com
+      </p>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    let invoice = null;
+
+    const product = {
+
+      name:
+        "Modern React Development",
+
+      description:
+        "Learn MVP thinking, scalability and architecture.",
+
+      price:
+        29,
+
+      image:
+        "/images/modern-react-development.jpg"
+
+    };
+
+    function buyBook() {
+
+      invoice = {
+
+        number:
+          "INV-" + Date.now(),
+
+        seller:
+          "Modern Web Academy",
+
+        product:
+          product.name,
+
+        total:
+          product.price
+
+      };
+
+      renderInvoice();
+
+    }
+
+    function renderInvoice() {
+
+      document
+        .getElementById(
+          "invoice"
+        )
+        .style.display =
+        "block";
+
+      document
+        .getElementById(
+          "invoiceNumber"
+        )
+        .innerText =
+        invoice.number;
+
+      document
+        .getElementById(
+          "seller"
+        )
+        .innerText =
+        invoice.seller;
+
+      document
+        .getElementById(
+          "product"
+        )
+        .innerText =
+        invoice.product;
+
+      document
+        .getElementById(
+          "total"
+        )
+        .innerText =
+        invoice.total;
+
+    }
+
+  </script>
+
+</body>
+
+</html>
