@@ -8,7 +8,7 @@
     content="width=device-width, initial-scale=1.0"
   >
   <title>
-    MVP First - Vanilla JS
+    MVP First - Vanilla Manual Reactivity
   </title>
 </head>
 <body>
@@ -91,8 +91,6 @@
 
   <script>
 
-    let invoice = null;
-
     const product = {
       name:
         "Modern React Development",
@@ -102,24 +100,91 @@
         29
     };
 
+    const invoice = {};
+
+    function setInvoice(
+      property,
+      value
+    ) {
+
+      invoice[property] =
+        value;
+
+      document
+        .getElementById(
+          "invoice"
+        )
+        .style.display =
+          "block";
+
+      if(
+        property ===
+        "number"
+      )
+        document
+          .getElementById(
+            "invoiceNumber"
+          )
+          .innerText =
+            value;
+
+      if(
+        property ===
+        "seller"
+      )
+        document
+          .getElementById(
+            "seller"
+          )
+          .innerText =
+            value;
+
+      if(
+        property ===
+        "product"
+      )
+        document
+          .getElementById(
+            "product"
+          )
+          .innerText =
+            value;
+
+      if(
+        property ===
+        "total"
+      )
+        document
+          .getElementById(
+            "total"
+          )
+          .innerText =
+            value;
+
+    }
+
     function buyBook() {
 
-      invoice = {
-        number:
-          "INV-" + Date.now(),
-        seller:
-          "Modern Web Academy",
-        product:
-          product.name,
-        total:
-          product.price
-      };
+      setInvoice(
+        "number",
+        "INV-" +
+        Date.now()
+      );
 
-      document.getElementById("invoice").style.display="block";
-      document.getElementById("invoiceNumber").innerText=invoice.number;
-      document.getElementById("seller").innerText=invoice.seller;
-      document.getElementById("product").innerText=invoice.product;
-      document.getElementById("total").innerText=invoice.total;
+      setInvoice(
+        "seller",
+        "Modern Web Academy"
+      );
+
+      setInvoice(
+        "product",
+        product.name
+      );
+
+      setInvoice(
+        "total",
+        product.price
+      );
 
     }
 

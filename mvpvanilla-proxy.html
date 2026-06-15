@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>
+    MVP First - Vanilla Reactive JS
+  </title>
+</head>
+<body>
+
+  <div
+    style="
+      max-width:700px;
+      margin:auto;
+      padding:20px;
+    "
+  >
+
+    <img
+      src="images/modern-react-development.jpg"
+      alt=""
+      width="100%"
+    >
+
+    <h1>
+      Modern React Development
+    </h1>
+
+    <p>
+      Learn MVP thinking, scalability and architecture.
+    </p>
+
+    <h2>
+      29 EUR
+    </h2>
+
+    <button
+      onclick="buyBook()"
+    >
+      BUY
+    </button>
+
+    <div
+      id="invoice"
+      style="
+        display:none;
+        margin-top:20px;
+        padding:20px;
+        border:1px solid #ccc;
+      "
+    >
+
+      <h2>
+        INVOICE
+      </h2>
+
+      <p>
+        Invoice:
+        <span id="invoiceNumber"></span>
+      </p>
+
+      <p>
+        Seller:
+        <span id="seller"></span>
+      </p>
+
+      <p>
+        Product:
+        <span id="product"></span>
+      </p>
+
+      <p>
+        Total:
+        <span id="total"></span>
+        EUR
+      </p>
+
+      <p>
+        PayPal:
+        paypal@example.com
+      </p>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const product = {
+      name:
+        "Modern React Development",
+      description:
+        "Learn MVP thinking, scalability and architecture.",
+      price:
+        29
+    };
+
+    const invoice = new Proxy(
+      {},
+      {
+        set(
+          target,
+          property,
+          value
+        ) {
+
+          target[property] = value;
+
+          document
+            .getElementById(
+              "invoice"
+            )
+            .style.display =
+              "block";
+
+          if(
+            property ===
+            "number"
+          )
+            document
+              .getElementById(
+                "invoiceNumber"
+              )
+              .innerText =
+                value;
+
+          if(
+            property ===
+            "seller"
+          )
+            document
+              .getElementById(
+                "seller"
+              )
+              .innerText =
+                value;
+
+          if(
+            property ===
+            "product"
+          )
+            document
+              .getElementById(
+                "product"
+              )
+              .innerText =
+                value;
+
+          if(
+            property ===
+            "total"
+          )
+            document
+              .getElementById(
+                "total"
+              )
+              .innerText =
+                value;
+
+          return true;
+
+        }
+      }
+    );
+
+    function buyBook() {
+
+      invoice.number =
+        "INV-" +
+        Date.now();
+
+      invoice.seller =
+        "Modern Web Academy";
+
+      invoice.product =
+        product.name;
+
+      invoice.total =
+        product.price;
+
+    }
+
+  </script>
+
+</body>
+</html>
