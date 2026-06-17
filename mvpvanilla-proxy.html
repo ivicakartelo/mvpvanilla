@@ -1,190 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-  <title>
-    MVP First - Vanilla Reactive JS
-  </title>
-</head>
 <body>
 
-  <div
-    style="
-      max-width:700px;
-      margin:auto;
-      padding:20px;
-    "
-  >
+<p>
+  Name:
+  <input id="nameInput">
+</p>
 
-    <img
-      src="images/modern-react-development.jpg"
-      alt=""
-      width="100%"
-    >
+<p>
+  Preview:
+  <span id="namePreview"></span>
+</p>
 
-    <h1>
-      Modern React Development
-    </h1>
+<script>
 
-    <p>
-      Learn MVP thinking, scalability and architecture.
-    </p>
+  const state = new Proxy(
+    {},
+    {
+      set(
+        target,
+        property,
+        value
+      ) {
 
-    <h2>
-      29 EUR
-    </h2>
+        target[property] =
+          value;
 
-    <button
-      onclick="buyBook()"
-    >
-      BUY
-    </button>
-
-    <div
-      id="invoice"
-      style="
-        display:none;
-        margin-top:20px;
-        padding:20px;
-        border:1px solid #ccc;
-      "
-    >
-
-      <h2>
-        INVOICE
-      </h2>
-
-      <p>
-        Invoice:
-        <span id="invoiceNumber"></span>
-      </p>
-
-      <p>
-        Seller:
-        <span id="seller"></span>
-      </p>
-
-      <p>
-        Product:
-        <span id="product"></span>
-      </p>
-
-      <p>
-        Total:
-        <span id="total"></span>
-        EUR
-      </p>
-
-      <p>
-        PayPal:
-        paypal@example.com
-      </p>
-
-    </div>
-
-  </div>
-
-  <script>
-
-    const product = {
-      name:
-        "Modern React Development",
-      description:
-        "Learn MVP thinking, scalability and architecture.",
-      price:
-        29
-    };
-
-    const invoice = new Proxy(
-      {},
-      {
-        set(
-          target,
-          property,
-          value
-        ) {
-
-          target[property] = value;
-
+        if(
+          property ===
+          "name"
+        )
           document
             .getElementById(
-              "invoice"
+              "namePreview"
             )
-            .style.display =
-              "block";
+            .innerText =
+              value;
 
-          if(
-            property ===
-            "number"
-          )
-            document
-              .getElementById(
-                "invoiceNumber"
-              )
-              .innerText =
-                value;
+        return true;
 
-          if(
-            property ===
-            "seller"
-          )
-            document
-              .getElementById(
-                "seller"
-              )
-              .innerText =
-                value;
+      }
+    }
+  );
 
-          if(
-            property ===
-            "product"
-          )
-            document
-              .getElementById(
-                "product"
-              )
-              .innerText =
-                value;
+  document
+    .getElementById(
+      "nameInput"
+    )
+    .addEventListener(
+      "input",
+      function () {
 
-          if(
-            property ===
-            "total"
-          )
-            document
-              .getElementById(
-                "total"
-              )
-              .innerText =
-                value;
+        state.name =
+          this.value;
 
-          return true;
-
-        }
       }
     );
 
-    function buyBook() {
-
-      invoice.number =
-        "INV-" +
-        Date.now();
-
-      invoice.seller =
-        "Modern Web Academy";
-
-      invoice.product =
-        product.name;
-
-      invoice.total =
-        product.price;
-
-    }
-
-  </script>
+</script>
 
 </body>
 </html>

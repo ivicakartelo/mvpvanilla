@@ -1,194 +1,38 @@
-```html
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-  <title>
-    MVP First - Vanilla Manual Reactivity
-  </title>
-</head>
 <body>
 
-  <div
-    style="
-      max-width:700px;
-      margin:auto;
-      padding:20px;
-    "
-  >
+<p>
+  Name:
+  <input id="nameInput">
+</p>
 
-    <img
-      src="images/modern-react-development.jpg"
-      alt=""
-      width="100%"
-    >
+<p>
+  Preview:
+  <span id="namePreview"></span>
+</p>
 
-    <h1>
-      Modern React Development
-    </h1>
+<script>
 
-    <p>
-      Learn MVP thinking, scalability and architecture.
-    </p>
+  document
+    .getElementById(
+      "nameInput"
+    )
+    .addEventListener(
+      "input",
+      function () {
 
-    <h2>
-      29 EUR
-    </h2>
-
-    <button
-      onclick="buyBook()"
-    >
-      BUY
-    </button>
-
-    <div
-      id="invoice"
-      style="
-        display:none;
-        margin-top:20px;
-        padding:20px;
-        border:1px solid #ccc;
-      "
-    >
-
-      <h2>
-        INVOICE
-      </h2>
-
-      <p>
-        Invoice:
-        <span id="invoiceNumber"></span>
-      </p>
-
-      <p>
-        Seller:
-        <span id="seller"></span>
-      </p>
-
-      <p>
-        Product:
-        <span id="product"></span>
-      </p>
-
-      <p>
-        Total:
-        <span id="total"></span>
-        EUR
-      </p>
-
-      <p>
-        PayPal:
-        paypal@example.com
-      </p>
-
-    </div>
-
-  </div>
-
-  <script>
-
-    const product = {
-      name:
-        "Modern React Development",
-      description:
-        "Learn MVP thinking, scalability and architecture.",
-      price:
-        29
-    };
-
-    const invoice = {};
-
-    function setInvoice(
-      property,
-      value
-    ) {
-
-      invoice[property] =
-        value;
-
-      document
-        .getElementById(
-          "invoice"
-        )
-        .style.display =
-          "block";
-
-      if(
-        property ===
-        "number"
-      )
         document
           .getElementById(
-            "invoiceNumber"
+            "namePreview"
           )
           .innerText =
-            value;
+            this.value;
 
-      if(
-        property ===
-        "seller"
-      )
-        document
-          .getElementById(
-            "seller"
-          )
-          .innerText =
-            value;
+      }
+    );
 
-      if(
-        property ===
-        "product"
-      )
-        document
-          .getElementById(
-            "product"
-          )
-          .innerText =
-            value;
-
-      if(
-        property ===
-        "total"
-      )
-        document
-          .getElementById(
-            "total"
-          )
-          .innerText =
-            value;
-
-    }
-
-    function buyBook() {
-
-      setInvoice(
-        "number",
-        "INV-" +
-        Date.now()
-      );
-
-      setInvoice(
-        "seller",
-        "Modern Web Academy"
-      );
-
-      setInvoice(
-        "product",
-        product.name
-      );
-
-      setInvoice(
-        "total",
-        product.price
-      );
-
-    }
-
-  </script>
+</script>
 
 </body>
 </html>
