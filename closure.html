@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+function outer() {
+    let x = 5;
+
+    return function () {
+        console.log(x);
+    };
+}
+
+const f = outer();
+f();
+</script>
+
+</body>
+</html>

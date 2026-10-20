@@ -1,38 +1,13 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-<p>
-  Name:
-  <input id="nameInput">
-</p>
-
-<p>
-  Preview:
-  <span id="namePreview"></span>
-</p>
-
+<h1>Vanilla JS</h1>
+<p>Name: <input id="nameInput"></p>
+<p>Preview: <span id="namePreview"></span></p>
 <script>
-
-  document
-    .getElementById(
-      "nameInput"
-    )
-    .addEventListener(
-      "input",
-      function () {
-
-        document
-          .getElementById(
-            "namePreview"
-          )
-          .innerText =
-            this.value;
-
-      }
-    );
-
+  window.document.getElementById("nameInput").addEventListener("input",
+  function () {
+  window.document.getElementById("namePreview").innerText = this.value;});
 </script>
-
 </body>
 </html>
